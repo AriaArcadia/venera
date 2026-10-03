@@ -177,6 +177,7 @@ class AppDio with DioMixin {
 class RHttpAdapter implements HttpClientAdapter {
   Future<rhttp.ClientSettings> get settings async {
     var proxy = await getProxy();
+    final acceptBadCert = appdata.settings['acceptBadCert'] ?? false;
 
     return rhttp.ClientSettings(
       proxySettings: proxy == null
@@ -188,6 +189,7 @@ class RHttpAdapter implements HttpClientAdapter {
         keepAliveTimeout: Duration(seconds: 60),
         keepAlivePing: Duration(seconds: 30),
       ),
+      acceptBadCert: acceptBadCert,
       throwOnStatusCode: false,
       dnsSettings: rhttp.DnsSettings.static(overrides: _getOverrides()),
       tlsSettings: rhttp.TlsSettings(
