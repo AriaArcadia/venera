@@ -21,6 +21,11 @@ class _NetworkSettingsState extends State<NetworkSettings> {
           title: "DNS Overrides".tl,
           builder: () => const _DNSOverrides(),
         ).toSliver(),
+        _SwitchSetting(
+          title: "Ignore Bad Certificate".tl,
+          subtitle: "⚠️ 仅用于调试，开启后会跳过证书校验，存在安全风险。".tl,
+          settingKey: "ignoreBadCertificate",
+        ).toSliver(),
         _SliderSetting(
           title: "Download Threads".tl,
           settingsIndex: 'downloadThreads',
